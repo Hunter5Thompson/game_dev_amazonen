@@ -1,0 +1,18 @@
+Anleitung:
+
+1. **Spielbeginn**: Das Spiel beginnt mit dem weißen Spieler. Die Spieler ziehen abwechselnd.
+
+2. **Zug**: Jeder Zug besteht aus zwei Teilen: Bewegung und Schuss.
+
+   - **Bewegung**: Wähle eine deiner Amazonen und bewege sie auf ein leeres Feld. Die Bewegung kann in jede Richtung erfolgen (horizontal, vertikal oder diagonal), ähnlich wie eine Dame im Schachspiel.
+                   Die Amazone kann über mehrere leere Felder hinweg ziehen, darf aber kein Feld überqueren oder betreten, das bereits von einer anderen Amazone oder einem Pfeil besetzt ist.
+
+   - **Schuss**: Nachdem du deine Amazone bewegt hast, schießt sie einen "giftigen" Pfeil auf ein anderes Feld. 
+                 Der Pfeil kann in jede Richtung fliegen (wiederum wie eine Dame im Schachspiel), auch rückwärts in Richtung des Feldes, von dem aus die Amazone gerade gezogen hat.
+                 Der Pfeil darf jedoch kein Feld überqueren oder auf einem Feld landen, das bereits von einem anderen Pfeil oder einer Amazone besetzt ist.
+
+3. **Zugpflicht**: Du musst in jedem Zug eine Amazone bewegen und einen Pfeil schießen. Es gibt keine Möglichkeit, einen Zug zu überspringen.
+
+4. **Spielende**: Das Spiel endet, wenn ein Spieler keinen gültigen Zug mehr machen kann. Dieser Spieler hat dann verloren.
+
+Viel Spaß beim Spielen!

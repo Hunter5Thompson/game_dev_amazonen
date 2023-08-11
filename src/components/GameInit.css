@@ -1,0 +1,12 @@
+.game-init {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game-init h2 {
+    color: #4CAF50;
+    font-size: 2em;
+}

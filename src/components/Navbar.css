@@ -1,0 +1,58 @@
+/* Navbar.css */
+
+body {
+    margin-top: 80px;
+  }
+.navbar {
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: #f5f5dc;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #6b7d47;
+}
+
+.navbar.mobile {
+    /* CSS-Stile für mobile Geräte hier einfügen */
+    /* Zum Beispiel: */
+    /* Hintergrundfarbe für mobile Geräte ändern */
+    background-color: rgba(26, 43, 22, 0.7);
+    /* Abstand für mobile Geräte ändern */
+    padding: 10px;
+    /* Weitere Anpassungen für mobile Geräte */
+}
+
+.navbar.desktop {
+    /* CSS-Stile für Desktop-Geräte hier einfügen */
+    /* Zum Beispiel: */
+    /* Hintergrundfarbe für Desktop-Geräte ändern */
+    background-color: rgba(62, 82, 45, 0.7);
+    /* Abstand für Desktop-Geräte ändern */
+    padding: 20px;
+    /* Weitere Anpassungen für Desktop-Geräte */
+}
+
+html {
+    scroll-behavior: smooth;
+}

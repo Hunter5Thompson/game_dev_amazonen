@@ -1,0 +1,18 @@
+1. **Spieler erstellen**: Zuerst müssen Sie zwei Spieler erstellen. Klicken Sie auf den "Spieler erstellen" Button und geben Sie die Namen der Spieler ein. 
+
+2. **Spiel starten**: Nachdem Sie zwei Spieler erstellt haben, können Sie das Spiel starten. Klicken Sie auf den "Spiel erstellen" Button.
+                      Das Spielfeld wird angezeigt und der erste Spieler kann beginnen.
+
+3. **Zug machen**: Klicken Sie auf eine Ihrer Amazonen (dargestellt durch die Symbole 👧 oder 👦, je nach Spieler), dann auf ein leeres Feld, um die Amazone zu bewegen. 
+                   Danach klicken Sie auf ein weiteres leeres Feld, um den Pfeil zu werfen (dargestellt durch das Symbol 🏹). 
+
+4. **Zugwechsel**: Nachdem ein Spieler seinen Zug gemacht hat, ist der andere Spieler an der Reihe. 
+                   Dies wird durch die Anzeige des aktuellen Spielers oben auf dem Bildschirm angezeigt.
+
+5. **Spielende**: Das Spiel endet, wenn ein Spieler keine legalen Züge mehr machen kann. 
+                  Der andere Spieler wird dann zum Gewinner erklärt.
+
+6. **Hilfe**: Wenn Sie Hilfe benötigen, klicken Sie auf den "Hilfe" Link in der Navigationsleiste.
+              Dies öffnet einen Abschnitt mit den Spielregeln und Anweisungen zur Bedienung der Benutzeroberfläche.
+
+7. **Sound**: Sie können den Sound des Spiels ein- und ausschalten, indem Sie auf den "Sound ein-/ausschalten" Button klicken.
