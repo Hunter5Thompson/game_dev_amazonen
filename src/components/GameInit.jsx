@@ -15,32 +15,27 @@ const GameInit = ({ playerIds, setGameId }) => { // playerIds und setGameId als 
             if (playerIds && playerIds.length === 2) { // Überprüfen, ob Spieler-IDs vorhanden sind
                 try {
                     console.log("Fetching games from server...");
-                    const response = await axios.get(`${API_BASE_URL}games/`);
-                    console.log("Games fetched from server:", response.data);
-
-                    // If there are no games, create a new one
-                    if (response.data.games.length === 0) {
-                        console.log("No games found, creating a new game...");
-                        const createGameResponse = await axios.post(`${API_BASE_URL}games/`, {
-                            maxTurnTime: 60000,
-                            players: playerIds, // Spieler-IDs verwenden
-                            board: {
-                                gameSizeRows: 10,
-                                gameSizeColumns: 10,
-                                squares: [...Array(10)].map(() => Array(10).fill(-1))
-                            }
-                        });
-                        console.log("New game created:", createGameResponse.data);
-                        setGameStatus('Spiel erfolgreich erstellt!'); // Spielstatus aktualisieren
-                        setGameId(createGameResponse.data.id); // Aktualisieren Sie die gameId
-                    }
+                    await axios.get(`${API_BASE_URL}games/`);
+                    console.log("Creating a new game...");
+                    const createGameResponse = await axios.post(`${API_BASE_URL}games/`, {
+                        maxTurnTime: 60000,
+                        players: playerIds, // Spieler-IDs verwenden
+                        board: {
+                            gameSizeRows: 10,
+                            gameSizeColumns: 10,
+                            squares: [...Array(10)].map(() => Array(10).fill(-1))
+                        }
+                    });
+                    console.log("New game created:", createGameResponse.data);
+                    setGameStatus('Spiel erfolgreich erstellt!'); // Spielstatus aktualisieren
+                    setGameId(createGameResponse.data.id); // Aktualisieren Sie die gameId
                 } catch (error) {
                     console.error("Error occurred:", error);
                     setError(`Fehler im Paradies, dein Wunsch konnte nicht ausgeführt werden!: ${error.response?.data}`);
                 }
             }
         };
-
+    
         checkAndCreateGame();
     }, [playerIds,setGameId]); // Abhängigkeit von playerIds
 

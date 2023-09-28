@@ -1,26 +1,18 @@
-
 const generateInitialBoard = () => {
-    let newBoard = Array(10).fill(null).map(() => Array(10).fill('x')); // Initialize all cells to 'x'
+    // Erstelle ein leeres 10x10-Brett
+    const newBoard = Array(10).fill(null).map(() => Array(10).fill('-1'));
 
-    let positions = [];
-    for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
-            positions.push([i, j]);
-        }
-    }
+    // Setze die Amazonen für Spieler 1 (Weiß)
+    newBoard[0][3] = '0';
+    newBoard[0][6] = '0';
+    newBoard[3][0] = '0';
+    newBoard[3][9] = '0';
 
-    // Shuffle the positions
-    positions.sort(() => Math.random() - 0.5);
-
-    // Place the Amazons
-    for (let i = 0; i < 2; i++) {
-        let [x, y] = positions[i];
-        newBoard[x][y] = 'wA';
-    }
-    for (let i = 2; i < 4; i++) {
-        let [x, y] = positions[i];
-        newBoard[x][y] = 'bA';
-    }
+    // Setze die Amazonen für Spieler 2 (Schwarz)
+    newBoard[6][0] = '1';
+    newBoard[6][9] = '1';
+    newBoard[9][3] = '1';
+    newBoard[9][6] = '1';
 
     return newBoard;
 };

@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const GameLogic = ({ playerId, gameId }) => {
     const [board, setBoard] = useState(generateRandomBoard());
-    const [currentPlayer, setCurrentPlayer] = useState('wA');
+    const [currentPlayer, setCurrentPlayer] = useState('0');
     const [gameOver, setGameOver] = useState(false);
     const [selectedAmazon, setSelectedAmazon] = useState(null);
     const [selectedDestination, setSelectedDestination] = useState(null);
@@ -40,14 +40,14 @@ const GameLogic = ({ playerId, gameId }) => {
                 let dy = j > y ? 1 : j < y ? -1 : 0;
                 let x1 = x + dx, y1 = y + dy;
                 while (x1 !== i || y1 !== j) {
-                    if (board[x1][y1] === 'wA' || board[x1][y1] === 'bA' || board[x1][y1] === 'Arrow') {
+                    if (board[x1][y1] === '0' || board[x1][y1] === '1' || board[x1][y1] === '-2') {
                         break;
                     }
                     x1 += dx;
                     y1 += dy;
                 }
                 // If all cells between the selected Amazon and this cell are empty, this cell is a possible move
-                if (x1 === i && y1 === j && board[i][j] === 'x') {
+                if (x1 === i && y1 === j && board[i][j] === '-1') {
                     possibleMoves.push([i, j]);
                 }
             }
@@ -64,9 +64,9 @@ const GameLogic = ({ playerId, gameId }) => {
 const handleCellClick = (i, j) => {
     console.log(`Cell clicked at [${i}, ${j}]`); // Hinzugefügt
     if (arrowPhase) {
-        if (getPossibleMoves().some(([x, y]) => x === i && y === j) && board[i][j] === 'x') {
+        if (getPossibleMoves().some(([x, y]) => x === i && y === j) && board[i][j] === '-1') {
             let newBoard = [...board];
-            newBoard[i][j] = 'Arrow';
+            newBoard[i][j] = '-2';
             setBoard(newBoard);
             setSelectedAmazon(null);
             setArrowPhase(false);
@@ -74,7 +74,7 @@ const handleCellClick = (i, j) => {
             if (checkGameOver(currentPlayer)) {
                 setGameOver(true);
             } else {
-                setCurrentPlayer(currentPlayer === 'wA' ? 'bA' : 'wA');
+                setCurrentPlayer(currentPlayer === '0' ? '1' : '0');
             }
         }
     } else if (board[i][j] === currentPlayer) {
@@ -90,7 +90,7 @@ const handleCellClick = (i, j) => {
     const startGame = () => {
         setBoard(generateRandomBoard());
         setGameOver(false);
-        setCurrentPlayer('wA');
+        setCurrentPlayer('0');
     };
 
     const moveAmazon = async (startPos, endPos, arrowPos) => {
@@ -131,7 +131,11 @@ const handleCellClick = (i, j) => {
         if (newBoard[arrowPos[0]][arrowPos[1]] !== null) {
             return;
         }
-        newBoard[arrowPos[0]][arrowPos[1]] = 'Arrow';
+        newBoard[arrowPos[0]][arrowPos[1]] = '-2';
+
+        // Move Amazon again after shooting the arrow
+        newBoard[endPos[0]][endPos[1]] = null; // Make the end position empty
+        newBoard[startPos[0]][startPos[1]] = currentPlayer; // Move the Amazon back to the start position
 
         setBoard(newBoard);
 
@@ -168,10 +172,10 @@ try {
     
 
         // Check if the other player has any legal moves left
-        if (checkGameOver(currentPlayer === 'wA' ? 'wA' : 'bA')) {
+        if (checkGameOver(currentPlayer === '0' ? '0' : '1')) {
             setGameOver(true);
         } else {
-            setCurrentPlayer(currentPlayer === 'wA' ? 'wA' : 'bA');
+            setCurrentPlayer(currentPlayer === '0' ? '0' : '1');
         }
     };
 
@@ -213,14 +217,14 @@ try {
                     let dy = j > y ? 1 : j < y ? -1 : 0;
                     let x1 = x + dx, y1 = y + dy;
                     while (x1 !== i || y1 !== j) {
-                        if (board[x1][y1] === 'wA' || board[x1][y1] === 'bA' || board[x1][y1] === 'Arrow') {
+                        if (board[x1][y1] === '0' || board[x1][y1] === '1' || board[x1][y1] === '-2') {
                             break;
                         }
                         x1 += dx;
                         y1 += dy;
                     }
                     // If all cells between the selected Amazon and this cell are empty, a legal move has been found
-                    if (x1 === i && y1 === j && board[i][j] === 'x') {
+                    if (x1 === i && y1 === j && board[i][j] === '-1') {
                         console.log(`Found a possible move from [${x}, ${y}] to [${x1}, ${y1}]`);
                         return true;
                     }
@@ -236,7 +240,7 @@ try {
             <button onClick={startGame}>Start Game</button>
             <GameStatus currentPlayer={currentPlayer} gameOver={gameOver} />
             <Board board={board} onCellClick={handleCellClick} possibleMoves={getPossibleMoves()} />
-            {gameOver && <GameOverPopup winner={currentPlayer === 'wA' ? 'Black' : 'White'} />}
+            {gameOver && <GameOverPopup winner={currentPlayer === '0' ? 'Black' : 'White'} />}
         </div>
     );
 };

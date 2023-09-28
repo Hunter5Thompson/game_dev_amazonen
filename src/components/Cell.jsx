@@ -1,16 +1,16 @@
 const Cell = ({ value, onClick, isPossibleMove }) => {
     let display;
     switch (value) {
-        case 'wA':
+        case '0':
             display = '👸';
             break;
-        case 'bA':
+        case '1':
             display = '👸🏿';
             break;
-        case 'Arrow':
+        case '-2':
             display = '🔥'; // Feuersymbol
             break;
-        case 'x':
+        case '-1':
             display = '';
             break;
         default:
