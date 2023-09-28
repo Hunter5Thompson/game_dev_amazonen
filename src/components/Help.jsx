@@ -1,7 +1,6 @@
-//help.jsx
-
 import React, { useState, useEffect } from 'react';
-import './Help.css';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 function Help() {
   const [helpText, setHelpText] = useState('');
@@ -24,12 +23,28 @@ function Help() {
   }, []);
 
   return (
-    <div className="help" style={{ fontFamily: 'Georgia, serif' }}>
-      <h2 style={{ fontFamily: 'Georgia, serif' }}>Hilfe</h2>
-      <h3 style={{ fontFamily: 'Georgia, serif' }}>Spielregeln</h3>
-      <pre style={{ fontFamily: 'Georgia, serif' }}>{helpText}</pre>
-      <h3 style={{ fontFamily: 'Georgia, serif' }}>Bedienung der Benutzeroberfläche</h3>
-      <pre style={{ fontFamily: 'Georgia, serif' }}>{helpText2}</pre>
+    <div>
+      <Accordion defaultExpanded>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography variant="h5">Hilfe</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <div>
+            <Typography variant="h6">Spielregeln</Typography>
+            <Typography variant="body1" paragraph>
+              <pre>{helpText}</pre>
+            </Typography>
+            <Typography variant="h6">Bedienung der Benutzeroberfläche</Typography>
+            <Typography variant="body1">
+              <pre>{helpText2}</pre>
+            </Typography>
+          </div>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Cell from "./Cell";
 
 const Board = ({ board, onCellClick, possibleMoves }) => (
+    
     <div>
         {board.map((row, i) => (
             <div key={i}>

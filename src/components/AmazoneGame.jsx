@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import generateRandomBoard from './helper';
 import Board from './Board';
 import GameOverPopup from './GameOverPopup';
 import axios from 'axios';
+
+
+  
 
 const GameLogic = ({ playerId, gameId }) => {
   const [board, setBoard] = useState(generateRandomBoard());
@@ -11,7 +14,8 @@ const GameLogic = ({ playerId, gameId }) => {
   const [selectedAmazon, setSelectedAmazon] = useState(null);
   const [selectedDestination, setSelectedDestination] = useState(null);
   const [arrowPhase, setArrowPhase] = useState(false);
-
+  console.log("Player ID:", playerId);
+  console.log("Game ID:", gameId);
   const selectAmazon = (i, j) => {
     if (board[i][j] === currentPlayer) {
       setSelectedAmazon([i, j]);
@@ -57,6 +61,9 @@ const GameLogic = ({ playerId, gameId }) => {
 
     return possibleMoves;
   };
+
+
+  
 
   const handleCellClick =async (i, j) => {
     if (arrowPhase) {
