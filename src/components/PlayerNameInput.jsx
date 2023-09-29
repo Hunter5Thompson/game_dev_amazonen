@@ -10,6 +10,7 @@ const PlayerNameInput = ({ setGameId, setPlayerIds }) => {
     const [name1, setName1] = useState('');
     const [name2, setName2] = useState('');
     const [error, setError] = useState(null);
+    const [controllable, setControllable] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -23,7 +24,7 @@ const PlayerNameInput = ({ setGameId, setPlayerIds }) => {
     
                 const player2Response = await axios.post(`${API_BASE_URL}players/`, {
                     name: name2.trim(),
-                    controllable: false
+                    controllable: false  
                 });
     
                 // Set playerIds for the newly created players
@@ -69,6 +70,10 @@ const PlayerNameInput = ({ setGameId, setPlayerIds }) => {
                 <label>
                     Name Spieler 2:
                     <input type="text" value={name2} onChange={e => setName2(e.target.value)} required />
+                </label>
+                <label>
+                    Steuerbar:
+                    <input type="checkbox" checked={controllable} onChange={e => setControllable(e.target.checked)} />
                 </label>
                 <button type="submit">Spiel erstellen</button>
             </form>
