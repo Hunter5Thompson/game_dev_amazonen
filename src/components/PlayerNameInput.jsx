@@ -9,8 +9,8 @@ Modal.setAppElement('#root');
 const PlayerNameInput = ({ setGameId, setPlayerIds }) => {
     const [name1, setName1] = useState('');
     const [name2, setName2] = useState('');
-    const [error, setError] = useState(null);
     const [controllable, setControllable] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -24,18 +24,14 @@ const PlayerNameInput = ({ setGameId, setPlayerIds }) => {
     
                 const player2Response = await axios.post(`${API_BASE_URL}players/`, {
                     name: name2.trim(),
-                    controllable: false  
+                    controllable: controllable
                 });
     
-                // Set playerIds for the newly created players
                 setPlayerIds([player1Response.data.id, player2Response.data.id]);
     
-                // Fetch the list of games
                 const gamesResponse = await axios.get(`${API_BASE_URL}games/`);
-                // Set gameId to the ID of the first game in the list
                 setGameId(gamesResponse.data.games[0].id);
     
-                // Clear the input after successful submission
                 setName1('');
                 setName2('');
             } catch (error) {
@@ -72,7 +68,7 @@ const PlayerNameInput = ({ setGameId, setPlayerIds }) => {
                     <input type="text" value={name2} onChange={e => setName2(e.target.value)} required />
                 </label>
                 <label>
-                    Steuerbar:
+                    Controllable:
                     <input type="checkbox" checked={controllable} onChange={e => setControllable(e.target.checked)} />
                 </label>
                 <button type="submit">Spiel erstellen</button>
